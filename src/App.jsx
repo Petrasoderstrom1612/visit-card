@@ -15,9 +15,9 @@ export default function App() {
     const starImage = contact.isFavorite? starFilled : starEmpty
 
     function toggleFavorite() {
-        console.log("Toggle Favorite")
-      setContact(prevContact => ({...prevContact, isFavorite : !prevContact.isFavorite}))
-    }
+        console.log("Toggle Favorite") //OLD VERSION OF STATE |ADDED ONE PROPERTY    
+        setContact(prevContact =>           ({...prevContact, isFavorite : !prevContact.isFavorite}))
+    }//I need to provide a replacement state here new object, after comma just adjust the indidividual property on that state. If you would only return the part after comma, you would return a new object with one property only
 
     return (
         <main>
