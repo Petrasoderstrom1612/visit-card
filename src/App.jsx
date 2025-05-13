@@ -1,35 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react"
+import avatar from "./images/avatar.png"
+import starFilled from "./images/star-filled.png"
+import starEmpty from "./images/star-empty.png"
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+    const [contact, setContact] = React.useState({
+        firstName: "John",
+        lastName: "Doe",
+        phone: "+1 (212) 555-1212",
+        email: "itsmyrealname@example.com",
+        isFavorite: false
+    })
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    function toggleFavorite() {
+        console.log("Toggle Favorite")
+    }
+
+    return (
+        <main>
+            <article className="card">
+                <img src={avatar} className="avatar" alt="User profile picture of John Doe"/>
+                <div className="info">
+                    <button
+                        onClick={toggleFavorite}
+                        aria-pressed={false}
+                        className="favorite-button"
+                    >
+                        <img
+                            src={starEmpty}
+                            alt="empty star icon"
+                            className="favorite"
+                        />
+                    </button>
+                    <h2 className="name">John Doe</h2>
+                    <p className="contact">+46 5551212</p>
+                    <p className="contact">itsmyrealname@example.se</p>
+                </div>
+            </article>
+        </main>
+    )
 }
-
-export default App
