@@ -23,24 +23,24 @@ main {
     height: 350px;
 }
 
-.card .avatar {
+.avatar {
     width: 100%;
     padding: 10%;
     padding-bottom: 0;
 }
 
-.card .name {
+.name {
     margin-block: 13px;
     color: #333333;
 }
 
-.card .info {
+.info {
     padding: 10px;
 }
 
-.card .favorite {
+.favorite {
     width: 25px;
-    cursor: pointer;
+    cursor: pointer;  /* Mickey hand */
 }
 
 .contact {
@@ -49,12 +49,12 @@ main {
     margin-block: 7px; /* targets only top and bottom */
 }
 
-.favorite-button {
+.favorite-button {  /* remove default styling due to an img */
     border: none;
     background: transparent;
 }
 
-.favorite-button:active {
+.favorite-button:active {  /* remove default styling due to an img */
     transform: none;
     box-shadow: none;
 }

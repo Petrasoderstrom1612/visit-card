@@ -9,32 +9,36 @@ export default function App() {
         lastName: "Doe",
         phone: "+1 (212) 555-1212",
         email: "itsmyrealname@example.com",
-        isFavorite: false
+        isFavorite: true
     })
+
+    const starImage = contact.isFavorite? starFilled : starEmpty
 
     function toggleFavorite() {
         console.log("Toggle Favorite")
+      setContact(prevContact => ({...prevContact, isFavorite : !prevContact.isFavorite}))
     }
 
     return (
         <main>
             <article className="card">
-                <img src={avatar} className="avatar" alt="User profile picture of John Doe"/>
+                <img src={avatar} className="avatar" alt={`User profile picture of ${contact.firstName} ${contact.lastName}`}/>
                 <div className="info">
                     <button
                         onClick={toggleFavorite}
-                        aria-pressed={false}
+                        aria-pressed={contact.isFavorite} //false or true value
+                        aria-label={contact.isFavorite ? "Remove from favorites" : "Add to favorites"}
                         className="favorite-button"
                     >
                         <img
-                            src={starEmpty}
-                            alt="empty star icon"
+                            src={starImage}
+                            alt={contact.isFavorite ? "filled start icon" :"empty star icon"}
                             className="favorite"
                         />
                     </button>
-                    <h2 className="name">John Doe</h2>
-                    <p className="contact">+46 5551212</p>
-                    <p className="contact">itsmyrealname@example.se</p>
+                    <h2 className="name">{contact.firstName} {contact.lastName}</h2>
+                    <p className="contact">{contact.phone}</p>
+                    <p className="contact">{contact.email}</p>
                 </div>
             </article>
         </main>
