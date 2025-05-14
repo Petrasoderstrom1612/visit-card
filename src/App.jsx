@@ -16,12 +16,22 @@ export default function App() {
     const starImage = contact.isFavorite? starFilled : starEmpty
 
     function toggleFavorite() {
-        console.log("Toggle Favorite") //OLD VERSION OF STATE |ADDED ONE PROPERTY    
-        setContact(prevContact =>           ({...prevContact, isFavorite : !prevContact.isFavorite}))
+      console.log("Toggle Favorite") //OLD VERSION OF STATE |ADDED ONE PROPERTY    
+      setContact(prevContact =>           ({...prevContact, isFavorite : !prevContact.isFavorite}))
     }//I need to provide a replacement state here new object, after comma just adjust the indidividual property on that state. If you would only return the part after comma, you would return a new object with one property only
+    
 
+    /* FORM SECTION */ 
     const toggleFormVisibility = () => {
       setShowForm(prevShowForm => !prevShowForm)
+    }
+
+    const handleSubmit = (e) => {
+      e.preventDefault()
+      const formEl = e.currentTarget 
+      const formData = new FormData(formEl)
+      const email = formData.get("email")
+      formEl.reset()
     }
 
     return (
@@ -48,7 +58,7 @@ export default function App() {
         </article>
         {showForm && <section className="form-section">
           <h1>Signup form</h1>
-          <form method="post">
+          <form method="post" onSubmit={handleSubmit}>
             <label htmlFor="email">Email:</label>
             <input id="email" type="email" name="email" placeholder="joe@schmoe.com" />
             <br />
