@@ -27,11 +27,16 @@ export default function App() {
     }
 
     const handleSubmit = (formData) => {//e.preventDefault() & formEl.reset() no longer needed 
-      const occupation = formData.get("occupation")
-      const email = formData.get("email")
-      const workStyle = formData.getAll("work-style")
-      const workPlace = formData.getAll("workplace")
-      console.log(email, occupation, workStyle,workPlace)
+      // const occupation = formData.get("occupation") Individuellt
+      // const email = formData.get("email") Individuellt
+      // const workStyle = formData.getAll("work-style") Individuellt
+      // const workPlace = formData.getAll("workplace") Individuellt
+      // console.log(email, occupation, workStyle,workPlace) Individuellt
+      const data = Object.fromEntries(formData)
+      const workplace = formData.getAll("work-style") //must be done individually as the Object.fromEntries is unable to accept an object, hence several checkboxes only saves as one and it is the last chosen one
+      console.log(data, workplace)
+      const allData = {...data, workplace} //workplace overrides because the variable is the exact same name as property, if the variable name was different, you would do workplace: differentVariableName
+      console.log(allData) 
     }
 
     return (
@@ -71,10 +76,10 @@ export default function App() {
             <br />
 
             <fieldset>
-              <legend>Employment status:</legend>
+              <legend>Seeking for job:</legend>
               <label>
-              <input type="radio" name="occupation" value="unemployed" defaultChecked={true}/> {/*defaultChecked is default for radios*/}
-                Unemployed
+              <input type="radio" name="occupation" value="full-time" defaultChecked={true}/> {/*defaultChecked is default for radios*/}
+                Fulltime
               </label>
               <label>
                 <input type="radio" name="occupation" value="part-time"/> {/*value is the one sending to backend as name is the gatherer here*/}
@@ -98,7 +103,7 @@ export default function App() {
 
             <label htmlFor="workplace">Where do you live?</label>
             <select id="workplace" name="workplace" defaultValue="" required> {/*default value connects you to the first option, if you wrote malmo, then you would be connected to the second one. required is a must here as it ensures you have to choose, to avoid null since we have associated the default with empty""*/}
-              <option value="" disable>-- Choose a city --</option> {/*greyed out so you cannot select it*/}
+              <option value="" disable="true">-- Choose a city --</option> {/*greyed out so you cannot select it*/}
               <option value="malmo">Malmö</option>
               <option value="gothenburg">Göteborg</option>
               <option value="stockholm">Stockholm</option>
