@@ -31,6 +31,7 @@ export default function App() {
       const formEl = e.currentTarget 
       const formData = new FormData(formEl)
       const email = formData.get("email")
+      console.log(email)
       formEl.reset()
     }
 
