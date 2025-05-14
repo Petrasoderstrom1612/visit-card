@@ -68,7 +68,7 @@ form {
     padding-inline: 40px;
     display: flex;
     flex-direction: column;
-    margin-bottom: 20px;;
+    margin-block: 20px;
 }
 
 label {
@@ -80,6 +80,11 @@ input {
     border: 1px solid #0D9488;
     height: 2rem;
     text-indent: 10px;
+}
+
+fieldset{
+    display: flex;
+    flex-direction: column;
 }
 
 .button {

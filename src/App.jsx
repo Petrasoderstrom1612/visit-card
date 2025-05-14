@@ -26,14 +26,12 @@ export default function App() {
       setShowForm(prevShowForm => !prevShowForm)
     }
 
-    const handleSubmit = (e) => {
-      e.preventDefault()
-      const formEl = e.currentTarget 
-      const formData = new FormData(formEl)
+    const handleSubmit = (formData) => {//e.preventDefault() & formEl.reset() no longer needed 
+      const occupation = formData.get("occupation")
       const email = formData.get("email")
-      const comments = formData.get("comments")
-      console.log(email, comments)
-      formEl.reset()
+      const workStyle = formData.getAll("work-style")
+      const workPlace = formData.getAll("workplace")
+      console.log(email, occupation, workStyle,workPlace)
     }
 
     return (
@@ -59,10 +57,9 @@ export default function App() {
           </div>
         </article>
         {showForm && <section className="form-section">
-          <h1>Signup form</h1>
-          <form method="post" onSubmit={handleSubmit}>
+          <form method="post" action={handleSubmit}>
             <label htmlFor="email">Email:</label>
-            <input id="email" type="email" name="email" placeholder="joe@schmoe.com" />
+            <input id="email" type="email" name="email" placeholder="joe@schmoe.com" defaultValue="joe@schmoe.com"/> 
             <br />
 
             <label htmlFor="password">Password:</label>
@@ -71,8 +68,41 @@ export default function App() {
 
             <label htmlFor="comments">Comments:</label>
             <textarea id="comments" name="comments"></textarea>
-            <button className="button">Submit</button>
+            <br />
 
+            <fieldset>
+              <legend>Employment status:</legend>
+              <label>
+              <input type="radio" name="occupation" value="unemployed" defaultChecked={true}/> {/*defaultChecked is default for radios*/}
+                Unemployed
+              </label>
+              <label>
+                <input type="radio" name="occupation" value="part-time"/> {/*value is the one sending to backend as name is the gatherer here*/}
+                Part-time
+              </label>
+            </fieldset>
+            <br />
+
+            <fieldset>
+              <legend>Work style:</legend>
+              <label>
+              <input type="checkbox" name="work-style" value="remote" defaultChecked={true}/> {/*defaultChecked is default for checkboxes*/}
+                Remote
+              </label>
+              <label>
+                <input type="checkbox" name="work-style" value="hybrid"/> {/*value is the one sending to backend as name is the gatherer here*/}
+                Hybrid
+              </label>
+            </fieldset>
+
+            <label htmlFor="workplace">Where do you live?</label>
+            <select id="workplace" name="workplace" defaultValue="" required> {/*default value connects you to the first option, if you wrote malmo, then you would be connected to the second one. required is a must here as it ensures you have to choose, to avoid null since we have associated the default with empty""*/}
+              <option value="" disable>-- Choose a city --</option> {/*greyed out so you cannot select it*/}
+              <option value="malmo">Malmö</option>
+              <option value="gothenburg">Göteborg</option>
+              <option value="stockholm">Stockholm</option>
+            </select>
+            <button className="button">Submit</button>
           </form>
       </section>
       }
