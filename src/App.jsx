@@ -37,8 +37,8 @@ export default function App() {
     return (
         <>
         <main>
-        <article className="card" onClick={toggleFormVisibility}>
-          <img src={avatar} className="avatar" alt={`User profile picture of ${contact.firstName} ${contact.lastName}`} />
+        <article className="card">
+          <img src={avatar} className="avatar" alt={`User profile picture of ${contact.firstName} ${contact.lastName}`} onClick={toggleFormVisibility}/>
           <div className="info">
             <button
               onClick={toggleFavorite}
@@ -94,6 +94,7 @@ export default function App() {
                 Hybrid
               </label>
             </fieldset>
+            <br />
 
             <label htmlFor="workplace">Where do you live?</label>
             <select id="workplace" name="workplace" defaultValue="" required> {/*default value connects you to the first option, if you wrote malmo, then you would be connected to the second one. required is a must here as it ensures you have to choose, to avoid null since we have associated the default with empty""*/}
