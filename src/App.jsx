@@ -31,7 +31,8 @@ export default function App() {
       const formEl = e.currentTarget 
       const formData = new FormData(formEl)
       const email = formData.get("email")
-      console.log(email)
+      const comments = formData.get("comments")
+      console.log(email, comments)
       formEl.reset()
     }
 
@@ -68,6 +69,8 @@ export default function App() {
             <input id="password" type="password" name="password" />
             <br />
 
+            <label htmlFor="comments">Comments:</label>
+            <textarea id="comments" name="comments"></textarea>
             <button className="button">Submit</button>
 
           </form>
