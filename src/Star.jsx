@@ -1,15 +1,15 @@
 import starFilled from "./images/star-filled.png"
 import starEmpty from "./images/star-empty.png"
 
-const Star = ( {toggleFavorite, ...props}) => { //rest argument
-console.log(toggleFavorite, props)
+const Star = ( props) => { //rest argument
+console.log(props)
 const starImage = props.isFavorite? starFilled : starEmpty
  
 return (
     <div>
       <div className="info">
         <button
-          onClick={toggleFavorite}
+          onClick={props.toggleFavorite}
           aria-pressed={props.isFavorite} //false or true value
           aria-label={
             props.isFavorite ? "Remove from favorites" : "Add to favorites"
