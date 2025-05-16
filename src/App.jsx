@@ -1,7 +1,7 @@
 import React from "react"
 import avatar from "./images/avatar.png"
-import starFilled from "./images/star-filled.png"
-import starEmpty from "./images/star-empty.png"
+import Star from "./Star"
+
 
 export default function App() {
     const [showForm, setShowForm] = React.useState(true)
@@ -13,7 +13,6 @@ export default function App() {
         isFavorite: true
     })
 
-    const starImage = contact.isFavorite? starFilled : starEmpty
 
     function toggleFavorite() {
       console.log("Toggle Favorite") //OLD VERSION OF STATE |ADDED ONE PROPERTY    
@@ -44,22 +43,7 @@ export default function App() {
         <main>
         <article className="card">
           <img src={avatar} className="avatar" alt={`User profile picture of ${contact.firstName} ${contact.lastName}`} onClick={toggleFormVisibility}/>
-          <div className="info">
-            <button
-              onClick={toggleFavorite}
-              aria-pressed={contact.isFavorite} //false or true value
-              aria-label={contact.isFavorite ? "Remove from favorites" : "Add to favorites"}
-              className="favorite-button"
-            >
-              <img
-                src={starImage}
-                alt={contact.isFavorite ? "filled start icon" : "empty star icon"}
-                className="favorite" />
-            </button>
-            <h2 className="name">{contact.firstName} {contact.lastName}</h2>
-            <p className="contact">{contact.phone}</p>
-            <p className="contact">{contact.email}</p>
-          </div>
+          <Star {...contact} toggleFavorite={toggleFavorite}/> {/* passing all data as object destructuring*/}
         </article>
         {showForm && <section className="form-section">
           <form method="post" action={handleSubmit}>
