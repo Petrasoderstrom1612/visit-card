@@ -43,7 +43,7 @@ export default function App() {
         <main>
         <article className="card">
           <img src={avatar} className="avatar" alt={`User profile picture of ${contact.firstName} ${contact.lastName}`} onClick={toggleFormVisibility}/>
-          <Star {...contact} toggleFavorite={toggleFavorite}/> {/* passing all data as object destructuring*/}
+          <Star {...contact} toggleFavorite={toggleFavorite}/> {/* passing all data as object destructuring, |  YOU CANNOT USE ONCLICK AS THIS IS A JSX COMPONENT AND NOT HTML WITH DOM*/}
         </article>
         {showForm && <section className="form-section">
           <form method="post" action={handleSubmit}>
